@@ -3,6 +3,7 @@ import "./Navbar.css";
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Icon from "./Icon";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -26,9 +27,7 @@ const Navbar = () => {
                 to="/"
                 className="logo"
             >
-                <span className="material-symbols-outlined brand-icon">
-                    explore
-                </span>
+                <Icon name="compass" className="brand-icon" />
                 <strong>
                     TravelGo
                 </strong>
@@ -122,36 +121,28 @@ const Navbar = () => {
 
         <nav className="mobile-bottom-nav" aria-label="Navegacion movil">
             <NavLink to="/">
-                <span className="material-symbols-outlined">
-                    home
-                </span>
+                <Icon name="home" />
                 <small>
                     Inicio
                 </small>
             </NavLink>
 
             <NavLink to="/tours">
-                <span className="material-symbols-outlined">
-                    explore
-                </span>
+                <Icon name="compass" />
                 <small>
                     Explorar
                 </small>
             </NavLink>
 
             <NavLink to="/reservations">
-                <span className="material-symbols-outlined">
-                    confirmation_number
-                </span>
+                <Icon name="ticket" />
                 <small>
                     Viajes
                 </small>
             </NavLink>
 
             <NavLink to="/profile">
-                <span className="material-symbols-outlined">
-                    account_circle
-                </span>
+                <Icon name="user" />
                 <small>
                     Perfil
                 </small>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import Icon from "../components/Icon";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -55,22 +56,22 @@ const travelModules = [
     {
         title: "Experiencias seleccionadas",
         text: "Paquetes con itinerario, cupos, precio y servicios complementarios listos para comparar.",
-        icon: "travel_explore"
+        icon: "compass"
     },
     {
         title: "Transporte coordinado",
         text: "Opciones por avion o bus segun destino, capacidad y presupuesto del viajero.",
-        icon: "flight_takeoff"
+        icon: "plane"
     },
     {
         title: "Hoteles recomendados",
         text: "Alojamientos asociados al destino con informacion clara de precio, ciudad y categoria.",
-        icon: "hotel"
+        icon: "bed"
     },
     {
         title: "Confirmacion profesional",
         text: "Pago seguro, reserva confirmada y correo automatico con el resumen de compra.",
-        icon: "verified_user"
+        icon: "shield"
     }
 ];
 
@@ -198,9 +199,7 @@ const Home = () => {
                         onSubmit={handleSearch}
                     >
                         <div className="home-field home-field-wide">
-                            <span className="material-symbols-outlined">
-                                location_on
-                            </span>
+                            <Icon name="pin" />
                             <label htmlFor="home-destination">
                                 Destino
                             </label>
@@ -216,9 +215,7 @@ const Home = () => {
                         </div>
 
                         <div className="home-field">
-                            <span className="material-symbols-outlined">
-                                calendar_today
-                            </span>
+                            <Icon name="calendar" />
                             <label htmlFor="home-date">
                                 Fecha
                             </label>
@@ -233,9 +230,7 @@ const Home = () => {
                         </div>
 
                         <div className="home-field">
-                            <span className="material-symbols-outlined">
-                                group
-                            </span>
+                            <Icon name="users" />
                             <label htmlFor="home-travelers">
                                 Viajeros
                             </label>
@@ -252,9 +247,7 @@ const Home = () => {
                         </div>
 
                         <button type="submit">
-                            <span className="material-symbols-outlined">
-                                search
-                            </span>
+                            <Icon name="search" />
                             Buscar
                         </button>
                     </form>
@@ -295,9 +288,7 @@ const Home = () => {
                                 key={module.title}
                             >
                                 <span className="icon-chip">
-                                    <span className="material-symbols-outlined">
-                                        {module.icon}
-                                    </span>
+                                    <Icon name={module.icon} />
                                 </span>
                                 <strong>
                                     {module.title}
@@ -353,18 +344,14 @@ const Home = () => {
                                 </div>
                                 <div className="package-body">
                                     <div className="package-location">
-                                        <span className="material-symbols-outlined">
-                                            location_on
-                                        </span>
+                                        <Icon name="pin" />
                                         {item.destination}
                                     </div>
                                     <h3>
                                         {item.name}
                                     </h3>
                                     <div className="package-rating">
-                                        <span className="material-symbols-outlined">
-                                            star
-                                        </span>
+                                        <Icon name="star" />
                                         <strong>
                                             {item.rating}
                                         </strong>
@@ -441,9 +428,7 @@ const Home = () => {
                     <div className="home-review-grid">
                         {reviews.map((review) => (
                             <article key={review.name}>
-                                <span className="material-symbols-outlined">
-                                    format_quote
-                                </span>
+                                <Icon name="quote" />
                                 <p>
                                     {review.text}
                                 </p>

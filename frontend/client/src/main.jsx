@@ -41,8 +41,32 @@ const loadMaterialSymbols = () => {
     document.head.appendChild(link);
 };
 
+const watchForMaterialSymbols = () => {
+    if (document.querySelector(".material-symbols-outlined")) {
+        loadMaterialSymbols();
+
+        return;
+    }
+
+    const observer = new MutationObserver(() => {
+        if (!document.querySelector(".material-symbols-outlined")) {
+            return;
+        }
+
+        observer.disconnect();
+        loadMaterialSymbols();
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+};
+
 if (typeof window !== "undefined") {
-    window.requestAnimationFrame(loadMaterialSymbols);
+    window.addEventListener("load", watchForMaterialSymbols, {
+        once: true
+    });
 }
 
 ReactDOM.createRoot(

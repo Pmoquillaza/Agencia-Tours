@@ -11,6 +11,7 @@
     --outline: #565b6c;
     --brand: #006ce4;
     --brand-dark: #004ccd;
+    --brand-contrast: #003f9e;
     --brand-soft: #dbe1ff;
     --accent: #febb02;
     --accent-soft: #fff6d7;
@@ -98,6 +99,13 @@ img {
     max-width: 100%;
 }
 
+.app-icon {
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+    display: inline-block;
+}
+
 .route-loading {
     min-height: 100vh;
     display: grid;
@@ -133,7 +141,7 @@ img {
     padding: 0 10px;
     border-radius: 999px;
     background: var(--brand-soft);
-    color: var(--brand);
+    color: var(--brand-dark);
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0;
@@ -208,7 +216,7 @@ img {
 
 .secondary-btn {
     background: #ffffff;
-    color: var(--brand);
+    color: var(--brand-contrast);
     border-color: var(--line);
 }
 
@@ -220,7 +228,7 @@ img {
 
 .ghost-btn {
     background: transparent;
-    color: var(--brand);
+    color: var(--brand-contrast);
 }
 
 .pill {
@@ -230,7 +238,7 @@ img {
     padding: 0 11px;
     border-radius: 999px;
     background: var(--brand-soft);
-    color: var(--brand);
+    color: var(--brand-contrast);
     font-size: 13px;
     font-weight: 850;
 }

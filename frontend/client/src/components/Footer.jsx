@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Icon from "./Icon";
 
 import "./Footer.css";
 
@@ -8,9 +9,7 @@ const Footer = () => {
             <div className="footer-shell">
                 <div className="footer-brand">
                     <strong>
-                        <span className="material-symbols-outlined">
-                            explore
-                        </span>
+                        <Icon name="compass" />
                         TravelGo
                     </strong>
                     <p>
@@ -19,19 +18,13 @@ const Footer = () => {
 
                     <div className="footer-social">
                         <a href="#top" aria-label="Sitio web">
-                            <span className="material-symbols-outlined">
-                                public
-                            </span>
+                            <Icon name="globe" />
                         </a>
                         <a href="#top" aria-label="Fotos">
-                            <span className="material-symbols-outlined">
-                                camera
-                            </span>
+                            <Icon name="camera" />
                         </a>
                         <a href="#top" aria-label="Correo">
-                            <span className="material-symbols-outlined">
-                                alternate_email
-                            </span>
+                            <Icon name="mail" />
                         </a>
                     </div>
                 </div>
@@ -85,9 +78,7 @@ const Footer = () => {
                             aria-label="Email newsletter"
                         />
                         <button type="submit" aria-label="Unirse">
-                            <span className="material-symbols-outlined">
-                                send
-                            </span>
+                            <Icon name="send" />
                         </button>
                     </form>
                 </div>

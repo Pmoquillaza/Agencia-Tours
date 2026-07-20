@@ -153,7 +153,7 @@
     border-radius: 8px 0 0 8px;
 }
 
-.home-field > .material-symbols-outlined {
+.home-field > .app-icon {
     grid-row: 1 / span 2;
     color: var(--brand);
     font-size: 22px;
@@ -377,8 +377,8 @@
     font-weight: 800;
 }
 
-.package-location .material-symbols-outlined,
-.package-rating .material-symbols-outlined {
+.package-location .app-icon,
+.package-rating .app-icon {
     font-size: 16px;
 }
 
@@ -538,7 +538,7 @@
     box-shadow: var(--shadow-card);
 }
 
-.home-review-grid .material-symbols-outlined {
+.home-review-grid .app-icon {
     color: var(--brand);
     font-size: 30px;
     margin-bottom: 12px;
