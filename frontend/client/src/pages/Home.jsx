@@ -98,16 +98,16 @@ const Home = () => {
                         />
                         <source
                             srcSet="/images/hero-travel-960.webp"
-                            media="(max-width: 1024px)"
+                            media="(min-width: 641px)"
                             type="image/webp"
                         />
                         <img
-                            src="/images/hero-travel.webp"
-                            srcSet="/images/hero-travel-mobile.webp 520w, /images/hero-travel-640.webp 640w, /images/hero-travel-960.webp 960w, /images/hero-travel.webp 1280w"
+                            src="/images/hero-travel-960.webp"
+                            srcSet="/images/hero-travel-mobile.webp 520w, /images/hero-travel-640.webp 640w, /images/hero-travel-960.webp 960w"
                             sizes="100vw"
                             alt=""
-                            width="1440"
-                            height="960"
+                            width="960"
+                            height="640"
                             fetchPriority="high"
                             decoding="async"
                         />
