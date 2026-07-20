@@ -35,7 +35,258 @@
     <title>TravelGo | Agencia de Tours</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <nav class="navbar">
+        <a href="/" class="logo" data-discover="true">
+          <svg
+            class="app-icon brand-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="m15 9-2 6-4 2 2-6z"></path>
+          </svg>
+          <strong>TravelGo</strong>
+        </a>
+
+        <button
+          type="button"
+          class="menu-toggle"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links">
+          <a class="active" aria-current="page" href="/" data-discover="true">Inicio</a>
+          <a href="/tours" data-discover="true">Paquetes</a>
+          <a href="/reservations" data-discover="true">Mis viajes</a>
+          <a href="/dashboard" data-discover="true">Dashboard</a>
+        </div>
+
+        <div class="nav-profile">
+          <div>
+            <span>Invitado</span>
+            <small>Explorando</small>
+          </div>
+          <a href="/login" data-discover="true">Ingresar</a>
+        </div>
+      </nav>
+
+      <nav class="mobile-bottom-nav" aria-label="Navegacion movil">
+        <a class="active" aria-current="page" href="/" data-discover="true">
+          <svg
+            class="app-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="m3 11 9-8 9 8"></path>
+            <path d="M5 10v10h14V10"></path>
+            <path d="M10 20v-6h4v6"></path>
+          </svg>
+          <small>Inicio</small>
+        </a>
+        <a href="/tours" data-discover="true">
+          <svg
+            class="app-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="m15 9-2 6-4 2 2-6z"></path>
+          </svg>
+          <small>Explorar</small>
+        </a>
+        <a href="/reservations" data-discover="true">
+          <svg
+            class="app-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M4 8a2 2 0 0 0 0 4 2 2 0 0 1 0 4v2h16v-2a2 2 0 0 1 0-4 2 2 0 0 0 0-4V6H4z"></path>
+            <path d="M9 8v8"></path>
+          </svg>
+          <small>Viajes</small>
+        </a>
+        <a href="/profile" data-discover="true">
+          <svg
+            class="app-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c1.5-4 4-6 8-6s6.5 2 8 6"></path>
+          </svg>
+          <small>Perfil</small>
+        </a>
+      </nav>
+
+      <main class="home-page">
+        <section class="home-hero">
+          <picture class="home-hero-media" aria-hidden="true">
+            <source
+              srcset="/images/hero-travel-mobile.webp"
+              media="(max-width: 640px)"
+              type="image/webp"
+            />
+            <source
+              srcset="/images/hero-travel-960.webp"
+              media="(max-width: 1024px)"
+              type="image/webp"
+            />
+            <img
+              src="/images/hero-travel.webp"
+              srcset="/images/hero-travel-mobile.webp 520w, /images/hero-travel-640.webp 640w, /images/hero-travel-960.webp 960w, /images/hero-travel.webp 1280w"
+              sizes="100vw"
+              alt=""
+              width="1440"
+              height="960"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+
+          <div class="home-shell">
+            <p class="home-kicker">TravelGo Tour Agency</p>
+            <h1>Explora el mundo con reservas hechas a tu medida</h1>
+            <p>
+              Tours, transporte, hoteles, viajeros y pagos en una experiencia clara, moderna y segura para planificar tu siguiente aventura.
+            </p>
+            <div class="home-actions">
+              <a href="/tours" class="home-primary-action" data-discover="true">Reservar ahora</a>
+              <a href="/login" class="home-secondary-action" data-discover="true">Iniciar sesion</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-search-band">
+          <form class="home-search">
+            <div class="home-field home-field-wide">
+              <svg
+                class="app-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+              <label for="home-destination">Destino</label>
+              <input
+                id="home-destination"
+                type="search"
+                value=""
+                placeholder="Cusco, Paracas, Arequipa"
+              />
+            </div>
+
+            <div class="home-field">
+              <svg
+                class="app-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M8 3v4"></path>
+                <path d="M16 3v4"></path>
+                <path d="M4 9h16"></path>
+                <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+              </svg>
+              <label for="home-date">Fecha</label>
+              <input id="home-date" type="date" value="" />
+            </div>
+
+            <div class="home-field">
+              <svg
+                class="app-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <circle cx="9" cy="8" r="3"></circle>
+                <circle cx="17" cy="9" r="2.5"></circle>
+                <path d="M3 20c1.2-4 3.2-6 6-6s4.8 2 6 6"></path>
+                <path d="M14 15c2.8.2 4.8 1.8 6 5"></path>
+              </svg>
+              <label for="home-travelers">Viajeros</label>
+              <input
+                id="home-travelers"
+                type="number"
+                min="1"
+                max="20"
+                value="2"
+              />
+            </div>
+
+            <button type="submit">
+              <svg
+                class="app-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m16 16 5 5"></path>
+              </svg>
+              Buscar
+            </button>
+          </form>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

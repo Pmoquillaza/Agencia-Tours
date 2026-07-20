@@ -69,18 +69,22 @@ if (typeof window !== "undefined") {
     });
 }
 
-ReactDOM.createRoot(
-    document.getElementById('root')
-).render(
-
+const rootElement = document.getElementById("root");
+const app = (
     <React.StrictMode>
-
         <AuthProvider>
-
             <App />
-
         </AuthProvider>
-
     </React.StrictMode>
+);
+const normalizedPath = window.location.pathname.replace(/\/$/, "") || "/";
+const canHydrateHome =
+    rootElement.hasChildNodes() &&
+    ["/", "/home"].includes(normalizedPath);
 
-)
+if (canHydrateHome && ReactDOM.hydrateRoot) {
+    ReactDOM.hydrateRoot(rootElement, app);
+} else {
+    rootElement.replaceChildren();
+    ReactDOM.createRoot(rootElement).render(app);
+}

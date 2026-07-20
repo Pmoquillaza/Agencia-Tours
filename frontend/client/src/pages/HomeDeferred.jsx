@@ -1,3 +1,8 @@
+import {
+    useEffect,
+    useRef,
+    useState
+} from "react";
 import { Link } from "react-router-dom";
 
 import Footer from "../components/Footer";
@@ -105,6 +110,58 @@ const reviews = [
     }
 ];
 
+const transparentPixel =
+    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+
+const DeferredImage = ({ src, alt, width, height }) => {
+    const imageRef = useRef(null);
+    const [imageSrc, setImageSrc] = useState(transparentPixel);
+
+    useEffect(() => {
+        const image = imageRef.current;
+
+        if (!image) {
+            return undefined;
+        }
+
+        if (!("IntersectionObserver" in window)) {
+            setImageSrc(src);
+
+            return undefined;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                setImageSrc(src);
+                observer.disconnect();
+            },
+            {
+                rootMargin: "120px"
+            }
+        );
+
+        observer.observe(image);
+
+        return () => observer.disconnect();
+    }, [src]);
+
+    return (
+        <img
+            ref={imageRef}
+            src={imageSrc}
+            alt={alt}
+            width={width}
+            height={height}
+            loading="lazy"
+            decoding="async"
+        />
+    );
+};
+
 const HomeDeferred = () => (
     <>
         <section className="home-section home-value-strip">
@@ -184,7 +241,7 @@ const HomeDeferred = () => (
                         key={item.name}
                     >
                         <div className="package-image">
-                            <img
+                            <DeferredImage
                                 src={item.image}
                                 alt={item.name}
                                 width="720"
@@ -248,7 +305,7 @@ const HomeDeferred = () => (
                         className={`home-destination-card ${destinationItem.size || ""}`}
                         key={destinationItem.name}
                     >
-                        <img
+                        <DeferredImage
                             src={destinationItem.image}
                             alt={destinationItem.name}
                             width={destinationItem.size === "large" ? "960" : "720"}
