@@ -193,7 +193,7 @@
         </section>
 
         <section class="home-search-band">
-          <form class="home-search">
+          <form class="home-search" action="/tours" method="get">
             <div class="home-field home-field-wide">
               <svg
                 class="app-icon"
@@ -212,6 +212,7 @@
               <label for="home-destination">Destino</label>
               <input
                 id="home-destination"
+                name="search"
                 type="search"
                 value=""
                 placeholder="Cusco, Paracas, Arequipa"
@@ -236,7 +237,7 @@
                 <rect x="4" y="5" width="16" height="16" rx="2"></rect>
               </svg>
               <label for="home-date">Fecha</label>
-              <input id="home-date" type="date" value="" />
+              <input id="home-date" name="date" type="date" value="" />
             </div>
 
             <div class="home-field">
@@ -259,6 +260,7 @@
               <label for="home-travelers">Viajeros</label>
               <input
                 id="home-travelers"
+                name="travelers"
                 type="number"
                 min="1"
                 max="20"

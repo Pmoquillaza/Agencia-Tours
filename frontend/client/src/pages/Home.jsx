@@ -147,6 +147,8 @@ const Home = () => {
                 <section className="home-search-band">
                     <form
                         className="home-search"
+                        action="/tours"
+                        method="get"
                         onSubmit={handleSearch}
                     >
                         <div className="home-field home-field-wide">
@@ -156,6 +158,7 @@ const Home = () => {
                             </label>
                             <input
                                 id="home-destination"
+                                name="search"
                                 type="search"
                                 value={destination}
                                 onChange={(event) =>
@@ -172,6 +175,7 @@ const Home = () => {
                             </label>
                             <input
                                 id="home-date"
+                                name="date"
                                 type="date"
                                 value={date}
                                 onChange={(event) =>
@@ -187,6 +191,7 @@ const Home = () => {
                             </label>
                             <input
                                 id="home-travelers"
+                                name="travelers"
                                 type="number"
                                 min="1"
                                 max="20"
