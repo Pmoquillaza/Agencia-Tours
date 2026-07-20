@@ -1,0 +1,215 @@
+.summary-page {
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.summary-shell {
+    width: min(var(--container), calc(100% - 32px));
+    margin: 0 auto;
+    padding: 34px 0 64px;
+}
+
+.summary-shell > h1 {
+    color: var(--text);
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.1;
+    font-weight: 900;
+    margin-bottom: 24px;
+}
+
+.summary-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 24px;
+    align-items: start;
+}
+
+.summary-main {
+    display: grid;
+    gap: 20px;
+}
+
+.summary-package {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+}
+
+.summary-package img {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+}
+
+.summary-package > div {
+    padding: 26px;
+}
+
+.summary-package h2,
+.summary-service-grid h2,
+.summary-travelers h2,
+.summary-price h2 {
+    color: var(--text);
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.summary-package p:not(.eyebrow),
+.summary-service-grid p {
+    color: var(--muted-strong);
+    line-height: 1.65;
+}
+
+.summary-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.summary-chip-row span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--muted-strong);
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 850;
+}
+
+.summary-chip-row .material-symbols-outlined {
+    color: var(--brand);
+    font-size: 18px;
+}
+
+.summary-service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.summary-service-grid article,
+.summary-travelers,
+.summary-price {
+    padding: 24px;
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background: var(--brand-soft);
+    color: var(--brand);
+    margin-bottom: 16px;
+}
+
+.summary-service-grid strong {
+    display: block;
+    color: var(--brand);
+    margin-top: 16px;
+}
+
+.summary-traveler-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.summary-traveler-list div {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 4px 12px;
+    align-items: center;
+    padding: 14px;
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+}
+
+.summary-traveler-list span {
+    grid-row: 1 / span 2;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-weight: 900;
+}
+
+.summary-traveler-list strong {
+    color: var(--text);
+}
+
+.summary-traveler-list small {
+    color: var(--muted);
+}
+
+.summary-price {
+    position: sticky;
+    top: 88px;
+}
+
+.summary-price > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.summary-price span {
+    color: var(--muted-strong);
+}
+
+.summary-price strong {
+    color: var(--text);
+    text-align: right;
+}
+
+.summary-total-row span {
+    color: var(--text);
+    font-weight: 900;
+}
+
+.summary-total-row strong {
+    color: var(--brand);
+    font-size: 28px;
+    line-height: 1;
+}
+
+.summary-price .primary-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 960px) {
+    .summary-layout,
+    .summary-package {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-price {
+        position: static;
+    }
+}
+
+@media (max-width: 640px) {
+    .summary-shell {
+        width: min(100% - 24px, var(--container));
+        padding-top: 24px;
+    }
+
+    .summary-service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-package img {
+        min-height: 220px;
+    }
+}

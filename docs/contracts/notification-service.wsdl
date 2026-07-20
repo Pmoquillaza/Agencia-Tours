@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="https://travelgo.local/contracts/notification"
+  targetNamespace="https://travelgo.local/contracts/notification"
+  name="TravelGoNotificationService">
+
+  <types>
+    <xsd:schema
+      targetNamespace="https://travelgo.local/contracts/notification"
+      elementFormDefault="qualified">
+      <xsd:include schemaLocation="reservation-email.xsd" />
+    </xsd:schema>
+  </types>
+
+  <message name="SendReservationEmailRequest">
+    <part name="parameters" element="tns:reservationEmailRequest" />
+  </message>
+
+  <message name="SendReservationEmailResponse">
+    <part name="parameters" element="tns:reservationEmailResponse" />
+  </message>
+
+  <portType name="NotificationPortType">
+    <operation name="SendReservationEmail">
+      <input message="tns:SendReservationEmailRequest" />
+      <output message="tns:SendReservationEmailResponse" />
+    </operation>
+  </portType>
+
+  <binding name="NotificationSoapBinding" type="tns:NotificationPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="SendReservationEmail">
+      <soap:operation soapAction="sendReservationEmail" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+
+  <service name="TravelGoNotificationService">
+    <documentation>
+      Contrato formal para el servicio de notificacion por correo.
+      La implementacion del proyecto expone una version REST/XML en
+      http://localhost:3000/api/notifications/send.
+    </documentation>
+    <port name="NotificationPort" binding="tns:NotificationSoapBinding">
+      <soap:address location="http://localhost:3000/api/notifications/send" />
+    </port>
+  </service>
+
+</definitions>

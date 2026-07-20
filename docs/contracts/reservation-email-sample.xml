@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reservationEmailRequest>
+  <correo>cliente@demo.com</correo>
+  <nombre>Cliente Demo</nombre>
+  <tour>TravelGo Cusco Premium</tour>
+  <total>1290.00</total>
+</reservationEmailRequest>

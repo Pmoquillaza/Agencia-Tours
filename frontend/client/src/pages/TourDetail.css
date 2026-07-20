@@ -1,0 +1,388 @@
+.detail-page {
+    min-height: 100vh;
+    color: var(--text);
+}
+
+.loading-text {
+    padding: 40px;
+    color: var(--muted);
+}
+
+.detail-container {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 56px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 360px);
+    grid-template-areas:
+        "steps steps"
+        "tour config"
+        "itinerary config";
+    gap: 24px;
+    align-items: start;
+}
+
+.detail-steps {
+    grid-area: steps;
+}
+
+.detail-steps .booking-steps {
+    margin-bottom: 0;
+}
+
+/* =========================
+    TOUR CARD
+========================= */
+
+.detail-tour-card {
+    grid-area: tour;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.detail-tour-card:hover {
+    border-color: rgba(0, 113, 194, 0.22);
+    box-shadow: var(--shadow);
+}
+
+.detail-media {
+    min-height: 260px;
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.34));
+}
+
+.detail-media img {
+    width: 100%;
+    height: min(42vw, 360px);
+    min-height: 260px;
+    object-fit: cover;
+}
+
+.detail-media > span {
+    position: absolute;
+    left: 22px;
+    bottom: 20px;
+    z-index: 2;
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #001945;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.detail-tour-info {
+    padding: 26px;
+}
+
+.detail-tour-info h1 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.08;
+    margin-bottom: 18px;
+    color: var(--text);
+}
+
+.detail-tour-info p {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 10px;
+    color: var(--muted);
+}
+
+.detail-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 18px;
+}
+
+.detail-facts span {
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--muted-strong);
+    font-size: 13px;
+    font-weight: 850;
+}
+
+.detail-facts .material-symbols-outlined {
+    color: var(--brand);
+    font-size: 18px;
+}
+
+.detail-tour-info h2 {
+    margin-top: 22px;
+    font-size: 36px;
+    color: var(--brand);
+    font-weight: 900;
+}
+
+.detail-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.detail-highlights span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 13px;
+    font-weight: 850;
+}
+
+.detail-highlights .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.itinerary-panel {
+    grid-area: itinerary;
+    padding: 24px;
+}
+
+.itinerary-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.itinerary-header h2 {
+    font-size: 24px;
+}
+
+.itinerary-header > span {
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.itinerary-list {
+    display: grid;
+    gap: 10px;
+}
+
+.itinerary-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #ffffff;
+    padding: 14px;
+    text-align: left;
+    transition: 160ms ease;
+}
+
+.itinerary-item:hover,
+.itinerary-item.active {
+    border-color: rgba(0, 113, 194, 0.48);
+    box-shadow: 0 10px 24px rgba(19, 34, 56, 0.08);
+}
+
+.itinerary-item strong,
+.itinerary-item span {
+    display: block;
+}
+
+.itinerary-item strong {
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+.itinerary-item span {
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.itinerary-item small {
+    color: var(--brand);
+    font-weight: 850;
+}
+
+/* =========================
+    CONFIG CARD
+========================= */
+
+.detail-config-card {
+    grid-area: config;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 96px;
+}
+
+.detail-config-card h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+.style-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.style-selector p {
+    grid-column: 1 / -1;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.style-selector button {
+    min-height: 38px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 850;
+    text-transform: capitalize;
+    transition: 160ms ease;
+}
+
+.style-selector button:hover,
+.style-selector button.active {
+    background: var(--brand-soft);
+    border-color: rgba(0, 113, 194, 0.45);
+    color: var(--brand);
+}
+
+.detail-input-group {
+    margin-bottom: 18px;
+}
+
+.detail-input-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.detail-continue-btn {
+    width: 100%;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--brand);
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    transition: 160ms ease;
+}
+
+.detail-continue-btn:hover {
+    background: var(--brand-dark);
+    transform: translateY(-1px);
+}
+
+.live-summary {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 16px;
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+}
+
+.live-summary div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.live-summary strong {
+    color: var(--text);
+}
+
+.live-summary .summary-total {
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-weight: 850;
+}
+
+.live-summary .summary-total strong {
+    color: var(--brand);
+    font-size: 20px;
+}
+
+/* =========================
+    RESPONSIVE
+========================= */
+
+@media(max-width: 900px) {
+
+    .detail-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "steps"
+            "tour"
+            "config"
+            "itinerary";
+        padding-top: 18px;
+    }
+
+    .detail-tour-card,
+    .detail-steps,
+    .itinerary-panel,
+    .detail-config-card {
+        grid-column: auto;
+    }
+
+    .detail-config-card {
+        position: static;
+    }
+}
+
+@media(max-width: 520px) {
+    .style-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .itinerary-header,
+    .itinerary-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

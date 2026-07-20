@@ -1,0 +1,119 @@
+.login-container {
+    min-height: calc(100vh - 68px);
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(360px, 460px);
+    gap: 48px;
+    align-items: center;
+    padding: 56px max(16px, calc((100vw - var(--container)) / 2));
+    background:
+        linear-gradient(90deg, rgba(249, 249, 249, 0.96), rgba(249, 249, 249, 0.86)),
+        url("https://images.unsplash.com/photo-1490430657723-4d607c1503fc?q=80&w=1600&auto=format&fit=crop");
+    background-size: cover;
+    background-position: center right;
+}
+
+.auth-intro {
+    color: var(--text);
+    max-width: 680px;
+}
+
+.auth-intro span {
+    display: inline-flex;
+    min-height: 34px;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    font-weight: 900;
+    margin-bottom: 22px;
+}
+
+.auth-intro h1 {
+    font-size: clamp(38px, 6vw, 66px);
+    line-height: 1.04;
+    font-weight: 900;
+    max-width: 760px;
+}
+
+.auth-intro p {
+    max-width: 560px;
+    color: var(--muted-strong);
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 20px;
+}
+
+.login-card {
+    width: 100%;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-card h1 {
+    text-align: left;
+    color: var(--text);
+    font-size: 32px;
+    line-height: 1.15;
+    margin-bottom: 4px;
+}
+
+.login-card > button[type="submit"] {
+    min-height: 48px;
+    background: var(--brand);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 900;
+    transition:
+        background 160ms ease,
+        transform 160ms ease;
+}
+
+.login-card > button[type="submit"]:hover {
+    background: var(--brand-dark);
+    transform: translateY(-1px);
+}
+
+.login-card p {
+    text-align: center;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.login-card > p.eyebrow {
+    width: fit-content;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.login-card > p:not(.eyebrow) span {
+    color: var(--brand);
+    font-weight: 900;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .login-container {
+        padding: 32px 16px;
+    }
+
+    .login-card {
+        padding: 22px;
+    }
+}

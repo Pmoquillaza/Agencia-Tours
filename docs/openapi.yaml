@@ -1,0 +1,434 @@
+openapi: 3.0.3
+info:
+  title: TravelGo Agencia Tours API
+  version: 1.0.0
+  description: >
+    Catalogo de servicios SOA para gestion de tours, reservas, viajeros,
+    pagos, notificaciones y auditoria.
+servers:
+  - url: http://localhost:3000/api
+    description: Backend local
+tags:
+  - name: Health
+  - name: Auth
+  - name: Tours
+  - name: Transportes
+  - name: Hoteles
+  - name: Reservas
+  - name: Viajeros
+  - name: Pagos
+  - name: Notificaciones
+paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Estado del gateway SOA
+      responses:
+        "200":
+          description: Estado operativo del gateway y servicios registrados.
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Registra un usuario y envia codigo de verificacion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "200":
+          description: Usuario creado con verificacion pendiente.
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Valida credenciales y envia codigo de acceso
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Codigo de acceso enviado.
+  /auth/verify-code:
+    post:
+      tags: [Auth]
+      summary: Confirma codigo de registro o login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyCodeRequest"
+      responses:
+        "200":
+          description: Codigo verificado. En login devuelve token JWT.
+  /auth/profile:
+    get:
+      tags: [Auth]
+      summary: Obtiene perfil del usuario autenticado
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Perfil del usuario.
+    put:
+      tags: [Auth]
+      summary: Actualiza datos editables del perfil
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileUpdateRequest"
+      responses:
+        "200":
+          description: Perfil actualizado.
+  /tours/list:
+    get:
+      tags: [Tours]
+      summary: Lista paquetes turisticos
+      parameters:
+        - in: query
+          name: search
+          schema:
+            type: string
+        - in: query
+          name: category
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista de tours.
+  /tours/{id}:
+    get:
+      tags: [Tours]
+      summary: Obtiene detalle de tour
+      parameters:
+        - $ref: "#/components/parameters/IdParam"
+      responses:
+        "200":
+          description: Detalle del tour.
+    put:
+      tags: [Tours]
+      summary: Actualiza tour
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/IdParam"
+      responses:
+        "200":
+          description: Tour actualizado.
+    delete:
+      tags: [Tours]
+      summary: Elimina tour
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/IdParam"
+      responses:
+        "200":
+          description: Tour eliminado.
+  /tours/create:
+    post:
+      tags: [Tours]
+      summary: Crea tour administrativo con contrato XML
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: string
+              example: |
+                <tour>
+                  <titulo>Tour Cusco Premium</titulo>
+                  <destino>Cusco</destino>
+                  <descripcion>Paquete cultural guiado</descripcion>
+                  <precio>1290</precio>
+                  <duracion>4</duracion>
+                  <cupos>18</cupos>
+                </tour>
+      responses:
+        "201":
+          description: Tour creado.
+  /flights/list:
+    get:
+      tags: [Transportes]
+      summary: Lista transportes por destino y tipo
+      parameters:
+        - in: query
+          name: destino
+          schema:
+            type: string
+        - in: query
+          name: tipo
+          schema:
+            type: string
+            enum: [vuelo, bus]
+      responses:
+        "200":
+          description: Lista de transportes.
+  /flights/create:
+    post:
+      tags: [Transportes]
+      summary: Crea transporte administrativo
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Transporte creado.
+  /hotels/list:
+    get:
+      tags: [Hoteles]
+      summary: Lista hoteles por destino
+      parameters:
+        - in: query
+          name: destino
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista de hoteles.
+  /hotels/create:
+    post:
+      tags: [Hoteles]
+      summary: Crea hotel administrativo
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Hotel creado.
+  /reservations/create:
+    post:
+      tags: [Reservas]
+      summary: Crea reserva y ejecuta workflow de cupos/calculo
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateReservationRequest"
+      responses:
+        "201":
+          description: Reserva creada.
+  /reservations/list:
+    get:
+      tags: [Reservas]
+      summary: Lista reservas del usuario autenticado
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Lista de reservas.
+  /reservations/{id}/cancel:
+    post:
+      tags: [Reservas]
+      summary: Cancela reserva pendiente y libera cupos
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/IdParam"
+      responses:
+        "200":
+          description: Reserva cancelada.
+  /travelers/create:
+    post:
+      tags: [Viajeros]
+      summary: Registra viajero asociado a una reserva
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTravelerRequest"
+      responses:
+        "201":
+          description: Viajero creado.
+  /travelers/reservation/{reservationId}:
+    get:
+      tags: [Viajeros]
+      summary: Lista viajeros por reserva
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: reservationId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Lista de viajeros.
+  /payments/create-intent:
+    post:
+      tags: [Pagos]
+      summary: Crea Payment Intent en Stripe
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reservation_id]
+              properties:
+                reservation_id:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: Client secret de Stripe.
+  /payments/confirm:
+    post:
+      tags: [Pagos]
+      summary: Confirma pago, actualiza reserva y orquesta notificacion
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reservation_id]
+              properties:
+                reservation_id:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: Pago confirmado y notificacion procesada.
+  /notifications/send:
+    post:
+      tags: [Notificaciones]
+      summary: Envia correo de reserva mediante contrato XML
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: string
+              example: |
+                <reservationEmailRequest>
+                  <correo>cliente@demo.com</correo>
+                  <nombre>Cliente Demo</nombre>
+                  <tour>Tour Cusco Premium</tour>
+                  <total>1290.00</total>
+                </reservationEmailRequest>
+      responses:
+        "200":
+          description: Correo enviado o error XML controlado.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    IdParam:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+  schemas:
+    RegisterRequest:
+      type: object
+      required: [nombre, apellido, correo, password]
+      properties:
+        nombre:
+          type: string
+        apellido:
+          type: string
+        correo:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 6
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    VerifyCodeRequest:
+      type: object
+      required: [email, code, purpose]
+      properties:
+        email:
+          type: string
+          format: email
+        code:
+          type: string
+          minLength: 6
+          maxLength: 6
+        purpose:
+          type: string
+          enum: [registro, login]
+    ProfileUpdateRequest:
+      type: object
+      properties:
+        nombre:
+          type: string
+        apellido:
+          type: string
+        telefono:
+          type: string
+        documento:
+          type: string
+    CreateReservationRequest:
+      type: object
+      required: [tour_id, cantidad_personas, tipo_transporte]
+      properties:
+        tour_id:
+          type: string
+          format: uuid
+        cantidad_personas:
+          type: integer
+          minimum: 1
+        tipo_transporte:
+          type: string
+          enum: [vuelo, bus]
+        hotel:
+          type: boolean
+        dias:
+          type: integer
+          minimum: 1
+        precio_transporte_unitario:
+          type: number
+        precio_hotel_noche:
+          type: number
+    CreateTravelerRequest:
+      type: object
+      required: [reservation_id, nombre, apellido]
+      properties:
+        reservation_id:
+          type: string
+          format: uuid
+        nombre:
+          type: string
+        apellido:
+          type: string
+        dni:
+          type: string
+        fecha_nacimiento:
+          type: string
+          format: date

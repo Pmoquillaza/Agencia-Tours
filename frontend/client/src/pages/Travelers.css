@@ -1,0 +1,287 @@
+.travelers-page {
+    min-height: 100vh;
+    padding: 34px 0 56px;
+    background: var(--bg);
+}
+
+.travelers-container {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+.travelers-title {
+    color: var(--text);
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 900;
+    line-height: 1.06;
+    margin-bottom: 10px;
+}
+
+.travelers-subtitle {
+    color: var(--muted);
+    margin-bottom: 22px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.traveler-setup-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.traveler-setup-card {
+    padding: 24px;
+}
+
+.traveler-setup-card h2 {
+    color: var(--text);
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.traveler-setup-card p {
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.traveler-counter {
+    min-height: 58px;
+    display: grid;
+    grid-template-columns: 58px 1fr 58px;
+    align-items: center;
+    margin-top: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+}
+
+.traveler-counter button {
+    height: 58px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.traveler-counter strong {
+    text-align: center;
+    color: var(--text);
+    font-size: 22px;
+}
+
+.travel-protection-title {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.travel-protection-title > .material-symbols-outlined {
+    color: var(--brand);
+    font-size: 32px;
+}
+
+.insurance-option {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 4px 10px;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.insurance-option + .insurance-option {
+    margin-top: 12px;
+}
+
+.insurance-option.active {
+    border-color: var(--brand);
+    background: var(--brand-soft);
+    box-shadow: 0 0 0 3px rgba(0, 76, 205, 0.1);
+}
+
+.insurance-option input {
+    width: 18px;
+    min-height: 18px;
+    accent-color: var(--brand);
+}
+
+.insurance-option span,
+.insurance-option strong {
+    color: var(--text);
+    font-weight: 900;
+}
+
+.insurance-option strong {
+    color: var(--brand);
+}
+
+.insurance-option small {
+    grid-column: 2 / -1;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.traveler-progress {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e6eaf1;
+    margin-bottom: 22px;
+}
+
+.traveler-progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--brand);
+    transition: width 180ms ease;
+}
+
+.travelers-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 24px;
+    align-items: start;
+}
+
+.traveler-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-card);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.traveler-card h2 {
+    grid-column: 1 / -1;
+    color: var(--text);
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+.traveler-note {
+    grid-column: 1 / -1;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+}
+
+.form-group input::placeholder {
+    color: #97a6b8;
+}
+
+.pay-button {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 52px;
+    border: none;
+    border-radius: 10px;
+    background: var(--brand);
+    color: white;
+    font-size: 16px;
+    font-weight: 900;
+    box-shadow: 0 14px 24px rgba(10, 102, 255, 0.2);
+    transition:
+        background 160ms ease,
+        transform 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.pay-button:hover {
+    transform: translateY(-1px);
+    background: var(--brand-dark);
+    box-shadow: 0 18px 30px rgba(10, 102, 255, 0.26);
+}
+
+.traveler-help {
+    position: sticky;
+    top: 88px;
+    padding: 24px;
+}
+
+.traveler-help h2 {
+    color: var(--text);
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.traveler-help p {
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.traveler-checklist {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.traveler-checklist span {
+    padding: 13px 14px;
+    border-radius: 12px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font-weight: 850;
+    border: 1px solid rgba(225, 229, 236, 0.9);
+}
+
+.traveler-checklist span::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    margin-right: 9px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+@media(max-width: 900px) {
+    .travelers-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .traveler-setup-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .traveler-help {
+        position: static;
+    }
+}
+
+@media(max-width: 640px) {
+    .travelers-page {
+        padding-top: 22px;
+    }
+
+    .travelers-container {
+        width: min(100% - 24px, 1180px);
+    }
+
+    .traveler-card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        border-radius: 14px;
+    }
+}

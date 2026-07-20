@@ -1,0 +1,430 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
+import "./Home.css";
+
+const featuredPackages = [
+    {
+        name: "Paraiso en las Maldivas",
+        destination: "Maldivas, Asia",
+        price: "S/ 2,499",
+        rating: "4.9",
+        reviews: "128",
+        badge: "Cancelacion gratis",
+        image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+        name: "Aventura Alpina Premium",
+        destination: "Zermatt, Suiza",
+        price: "S/ 3,150",
+        rating: "5.0",
+        reviews: "95",
+        badge: "Mas vendido",
+        image: "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+        name: "Esencia de Japon",
+        destination: "Tokio, Japon",
+        price: "S/ 1,890",
+        rating: "4.8",
+        reviews: "210",
+        badge: "Cultural",
+        image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop"
+    }
+];
+
+const agencyHighlights = [
+    {
+        value: "24/7",
+        label: "Soporte durante el viaje"
+    },
+    {
+        value: "5 pasos",
+        label: "Reserva guiada completa"
+    },
+    {
+        value: "100%",
+        label: "Pago y confirmacion segura"
+    }
+];
+
+const travelModules = [
+    {
+        title: "Experiencias seleccionadas",
+        text: "Paquetes con itinerario, cupos, precio y servicios complementarios listos para comparar.",
+        icon: "travel_explore"
+    },
+    {
+        title: "Transporte coordinado",
+        text: "Opciones por avion o bus segun destino, capacidad y presupuesto del viajero.",
+        icon: "flight_takeoff"
+    },
+    {
+        title: "Hoteles recomendados",
+        text: "Alojamientos asociados al destino con informacion clara de precio, ciudad y categoria.",
+        icon: "hotel"
+    },
+    {
+        title: "Confirmacion profesional",
+        text: "Pago seguro, reserva confirmada y correo automatico con el resumen de compra.",
+        icon: "verified_user"
+    }
+];
+
+const galleryDestinations = [
+    {
+        name: "Paris, Francia",
+        size: "large",
+        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+        name: "Santorini",
+        image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+        name: "Cusco",
+        image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+        name: "Barrera de Coral",
+        size: "wide",
+        image: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=1200&auto=format&fit=crop"
+    }
+];
+
+const reviews = [
+    {
+        name: "Mariana R.",
+        text: "La reserva fue clara de inicio a fin. Me gusto poder elegir transporte, hotel y pagar sin perder el avance."
+    },
+    {
+        name: "Carlos V.",
+        text: "El dashboard y el correo de confirmacion hicieron que el viaje se sintiera organizado y profesional."
+    }
+];
+
+const Home = () => {
+    const navigate = useNavigate();
+    const [destination, setDestination] = useState("");
+    const [date, setDate] = useState("");
+    const [travelers, setTravelers] = useState(2);
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+
+        const params = new URLSearchParams();
+
+        if (destination.trim()) {
+            params.set("search", destination.trim());
+        }
+
+        if (date) {
+            params.set("date", date);
+        }
+
+        if (travelers) {
+            params.set("travelers", travelers);
+        }
+
+        navigate(`/tours${params.toString() ? `?${params}` : ""}`);
+    };
+
+    return (
+        <>
+            <Navbar />
+
+            <main className="home-page">
+                <section className="home-hero">
+                    <div className="home-shell">
+                        <p className="home-kicker">
+                            TravelGo Tour Agency
+                        </p>
+
+                        <h1>
+                            Explora el mundo con reservas hechas a tu medida
+                        </h1>
+
+                        <p>
+                            Tours, transporte, hoteles, viajeros y pagos en una experiencia clara, moderna y segura para planificar tu siguiente aventura.
+                        </p>
+
+                        <div className="home-actions">
+                            <Link
+                                to="/tours"
+                                className="home-primary-action"
+                            >
+                                Reservar ahora
+                            </Link>
+
+                            <Link
+                                to="/login"
+                                className="home-secondary-action"
+                            >
+                                Iniciar sesion
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="home-search-band">
+                    <form
+                        className="home-search"
+                        onSubmit={handleSearch}
+                    >
+                        <div className="home-field home-field-wide">
+                            <span className="material-symbols-outlined">
+                                location_on
+                            </span>
+                            <label htmlFor="home-destination">
+                                Destino
+                            </label>
+                            <input
+                                id="home-destination"
+                                type="search"
+                                value={destination}
+                                onChange={(event) =>
+                                    setDestination(event.target.value)
+                                }
+                                placeholder="Cusco, Paracas, Arequipa"
+                            />
+                        </div>
+
+                        <div className="home-field">
+                            <span className="material-symbols-outlined">
+                                calendar_today
+                            </span>
+                            <label htmlFor="home-date">
+                                Fecha
+                            </label>
+                            <input
+                                id="home-date"
+                                type="date"
+                                value={date}
+                                onChange={(event) =>
+                                    setDate(event.target.value)
+                                }
+                            />
+                        </div>
+
+                        <div className="home-field">
+                            <span className="material-symbols-outlined">
+                                group
+                            </span>
+                            <label htmlFor="home-travelers">
+                                Viajeros
+                            </label>
+                            <input
+                                id="home-travelers"
+                                type="number"
+                                min="1"
+                                max="20"
+                                value={travelers}
+                                onChange={(event) =>
+                                    setTravelers(event.target.value)
+                                }
+                            />
+                        </div>
+
+                        <button type="submit">
+                            <span className="material-symbols-outlined">
+                                search
+                            </span>
+                            Buscar
+                        </button>
+                    </form>
+                </section>
+
+                <section className="home-section home-value-strip">
+                    {agencyHighlights.map((highlight) => (
+                        <div key={highlight.label}>
+                            <strong>
+                                {highlight.value}
+                            </strong>
+                            <span>
+                                {highlight.label}
+                            </span>
+                        </div>
+                    ))}
+                </section>
+
+                <section className="home-section">
+                    <div className="home-section-heading">
+                        <div>
+                            <p className="eyebrow">
+                                Beneficios
+                            </p>
+                            <h2>
+                                Por que viajar con TravelGo
+                            </h2>
+                            <p>
+                                Servicio premium disenado para que solo te preocupes de disfrutar el camino.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="home-module-grid">
+                        {travelModules.map((module) => (
+                            <article
+                                className="home-module-card"
+                                key={module.title}
+                            >
+                                <span className="icon-chip">
+                                    <span className="material-symbols-outlined">
+                                        {module.icon}
+                                    </span>
+                                </span>
+                                <strong>
+                                    {module.title}
+                                </strong>
+                                <p>
+                                    {module.text}
+                                </p>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="home-section home-packages">
+                    <div className="home-section-heading">
+                        <div>
+                            <p className="eyebrow">
+                                Paquetes destacados
+                            </p>
+                            <h2>
+                                Selecciones exclusivas de temporada
+                            </h2>
+                            <p>
+                                Paquetes curados para viajeros que buscan itinerarios completos y confiables.
+                            </p>
+                        </div>
+
+                        <Link
+                            to="/tours"
+                            className="ghost-btn"
+                        >
+                            Ver catalogo
+                        </Link>
+                    </div>
+
+                    <div className="home-package-grid">
+                        {featuredPackages.map((item) => (
+                            <article
+                                className="home-package-card"
+                                key={item.name}
+                            >
+                                <div className="package-image">
+                                    <img src={item.image} alt={item.name} />
+                                    <span>
+                                        {item.badge}
+                                    </span>
+                                </div>
+                                <div className="package-body">
+                                    <div className="package-location">
+                                        <span className="material-symbols-outlined">
+                                            location_on
+                                        </span>
+                                        {item.destination}
+                                    </div>
+                                    <h3>
+                                        {item.name}
+                                    </h3>
+                                    <div className="package-rating">
+                                        <span className="material-symbols-outlined">
+                                            star
+                                        </span>
+                                        <strong>
+                                            {item.rating}
+                                        </strong>
+                                        <small>
+                                            ({item.reviews} resenas)
+                                        </small>
+                                    </div>
+                                    <div className="package-footer">
+                                        <div>
+                                            <span>
+                                                Desde
+                                            </span>
+                                            <strong>
+                                                {item.price}
+                                            </strong>
+                                        </div>
+                                        <Link to="/tours">
+                                            Explorar
+                                        </Link>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="home-section">
+                    <div className="home-section-heading center">
+                        <div>
+                            <h2>
+                                Destinos que inspiran
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div className="home-destination-grid">
+                        {galleryDestinations.map((destinationItem) => (
+                            <Link
+                                to={`/tours?destination=${destinationItem.name}`}
+                                className={`home-destination-card ${destinationItem.size || ""}`}
+                                key={destinationItem.name}
+                            >
+                                <img
+                                    src={destinationItem.image}
+                                    alt={destinationItem.name}
+                                />
+                                <span>
+                                    {destinationItem.label || "Destino premium"}
+                                </span>
+                                <strong>
+                                    {destinationItem.name}
+                                </strong>
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="home-section home-reviews">
+                    <div className="home-section-heading">
+                        <div>
+                            <p className="eyebrow">
+                                Viajeros felices
+                            </p>
+                            <h2>
+                                Reservas claras, viajes tranquilos
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div className="home-review-grid">
+                        {reviews.map((review) => (
+                            <article key={review.name}>
+                                <span className="material-symbols-outlined">
+                                    format_quote
+                                </span>
+                                <p>
+                                    {review.text}
+                                </p>
+                                <strong>
+                                    {review.name}
+                                </strong>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+            </main>
+
+            <Footer />
+        </>
+    );
+};
+
+export default Home;
