@@ -57,6 +57,7 @@ const Login = () => {
         } catch (error) {
             alert(
                 error.response?.data?.message ||
+                error.message ||
                 "No se pudo iniciar sesion"
             );
         } finally {
@@ -86,6 +87,7 @@ const Login = () => {
         } catch (error) {
             alert(
                 error.response?.data?.message ||
+                error.message ||
                 "No se pudo verificar el codigo"
             );
         } finally {

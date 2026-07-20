@@ -28,8 +28,8 @@ begin
         select 1
         from information_schema.columns
         where table_schema = 'public'
-          and table_name = 'tours'
-          and column_name = 'duracion_dias'
+            and table_name = 'tours'
+            and column_name = 'duracion_dias'
     ) then
         alter table public.tours
             alter column duracion_dias set default 1;

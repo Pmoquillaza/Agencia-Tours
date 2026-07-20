@@ -37,6 +37,7 @@ seguridad y trazabilidad.
 | Auditoria | `backend/services/audit.service.js` y `public.audit_logs` |
 | Notificaciones | `notification-service` y `public.notifications` |
 | Demo en vivo | `docs/LIVE_DEMO_SCRIPT.md` |
+| Despliegue Ubuntu | `docs/DEPLOY_UBUNTU.md` |
 | Checklist final | `docs/FINAL_PROJECT_DELIVERABLES.md` |
 
 ## Estructura
@@ -67,6 +68,7 @@ Agencia-Tours/
     SERVICE_CATALOG.md
     SECURITY_MANUAL.md
     LIVE_DEMO_SCRIPT.md
+    DEPLOY_UBUNTU.md
     openapi.yaml
     contracts/
   frontend/

@@ -17,7 +17,30 @@ const notificationRoutes = require('./services/notification-service/notification
 
 const app = express();
 
-app.use(cors());
+const corsOrigins = String(
+    process.env.CORS_ORIGIN || '*'
+)
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            if (
+                corsOrigins.includes('*') ||
+                !origin ||
+                corsOrigins.includes(origin)
+            ) {
+                return callback(null, true);
+            }
+
+            return callback(
+                new Error('Origen no permitido por CORS')
+            );
+        }
+    })
+);
 
 app.use(express.json());
 

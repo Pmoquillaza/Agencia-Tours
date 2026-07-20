@@ -65,6 +65,7 @@ const Register = () => {
         } catch (error) {
             alert(
                 error.response?.data?.message ||
+                error.message ||
                 "Error registrando usuario"
             );
         } finally {
