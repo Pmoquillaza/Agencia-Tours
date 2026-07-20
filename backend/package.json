@@ -21,7 +21,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.3",
-    "nodemailer": "^8.0.8",
+    "nodemailer": "^9.0.3",
     "stripe": "^22.1.1",
     "xmlbuilder2": "^4.0.3"
   },
