@@ -1,0 +1,29 @@
+# TravelGo Full Context
+
+TravelGo es una aplicacion web de agencia de tours construida con React, Vite, Node.js, Express y Supabase. Su objetivo es permitir que una persona explore paquetes turisticos, elija transporte y hotel, registre viajeros, pague una reserva y reciba confirmacion.
+
+## Navegacion publica
+
+- [Inicio](https://travelgo.bond/): presentacion de la agencia, busqueda rapida, beneficios, paquetes destacados y destinos.
+- [Paquetes](https://travelgo.bond/tours): catalogo filtrable de experiencias turisticas disponibles.
+- [Login](https://travelgo.bond/login): acceso de usuarios registrados.
+- [Registro](https://travelgo.bond/register): creacion de una cuenta de viajero.
+
+## Navegacion de reserva
+
+- [Detalle de tour](https://travelgo.bond/tours/1): vista de referencia para configurar personas, dias e itinerario.
+- [Transporte](https://travelgo.bond/transport-selection): seleccion de vuelo o bus asociado al destino.
+- [Hotel](https://travelgo.bond/hotel-selection): seleccion de alojamiento recomendado.
+- [Resumen](https://travelgo.bond/reservation-summary): validacion previa antes de registrar viajeros o pagar.
+
+## Areas privadas
+
+- [Dashboard](https://travelgo.bond/dashboard): panel para revisar reservas y continuar compras.
+- [Mis viajes](https://travelgo.bond/reservations): historial y estado de reservas.
+- [Perfil](https://travelgo.bond/profile): informacion del usuario autenticado.
+
+## Administracion
+
+- [Administrar tours](https://travelgo.bond/admin/tours): mantenimiento de paquetes.
+- [Administrar hoteles](https://travelgo.bond/admin/hotels): mantenimiento de alojamientos.
+- [Administrar transportes](https://travelgo.bond/admin/transports): mantenimiento de rutas y capacidades.

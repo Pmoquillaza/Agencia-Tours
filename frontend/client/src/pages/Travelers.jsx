@@ -289,13 +289,12 @@ const Travelers = () => {
                         </section>
                     </div>
 
-                    <div className="traveler-progress">
-                        <span
-                            style={{
-                                width: `${(currentTraveler / totalTravelers) * 100}%`
-                            }}
-                        />
-                    </div>
+                    <progress
+                        className="traveler-progress"
+                        value={currentTraveler}
+                        max={totalTravelers}
+                        aria-label="Progreso de registro de viajeros"
+                    />
 
                     <div className="travelers-layout">
 

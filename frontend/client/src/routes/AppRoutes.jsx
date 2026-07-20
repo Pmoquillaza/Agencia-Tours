@@ -1,4 +1,9 @@
 import {
+    lazy,
+    Suspense
+} from "react";
+
+import {
 
     BrowserRouter,
     Routes,
@@ -6,24 +11,37 @@ import {
 
 } from "react-router-dom";
 
-import Login from "../pages/Login";
-import Home from "../pages/Home";
-import Dashboard from "../pages/Dashboard";
-import Reservations from "../pages/Reservations";
 import ProtectedRoute from "../components/ProtectedRoute";
-import Tours from "../pages/Tours";
-import TourDetail from "../pages/TourDetail";
-import Travelers from "../pages/Travelers";
-import HotelSelection from "../pages/HotelSelection";
-import TransportSelection from "../pages/TransportSelection";
-import ReservationSummary from "../pages/ReservationSummary";
-import PaymentWrapper from "../pages/PaymentWrapper";
-import Confirm from "../pages/Confirm";
-import Register from "../pages/Register";
-import Profile from "../pages/Profile";
-import AdminTours from "../pages/AdminTours";
-import AdminHotels from "../pages/AdminHotels";
-import AdminTransports from "../pages/AdminTransports";
+import Home from "../pages/Home";
+
+const Login = lazy(() => import("../pages/Login"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Reservations = lazy(() => import("../pages/Reservations"));
+const Tours = lazy(() => import("../pages/Tours"));
+const TourDetail = lazy(() => import("../pages/TourDetail"));
+const Travelers = lazy(() => import("../pages/Travelers"));
+const HotelSelection = lazy(() => import("../pages/HotelSelection"));
+const TransportSelection = lazy(() => import("../pages/TransportSelection"));
+const ReservationSummary = lazy(() => import("../pages/ReservationSummary"));
+const PaymentWrapper = lazy(() => import("../pages/PaymentWrapper"));
+const Confirm = lazy(() => import("../pages/Confirm"));
+const Register = lazy(() => import("../pages/Register"));
+const Profile = lazy(() => import("../pages/Profile"));
+const AdminTours = lazy(() => import("../pages/AdminTours"));
+const AdminHotels = lazy(() => import("../pages/AdminHotels"));
+const AdminTransports = lazy(() => import("../pages/AdminTransports"));
+
+const renderPage = (Page) => (
+    <Suspense
+        fallback={
+            <div className="route-loading" role="status">
+                Cargando...
+            </div>
+        }
+    >
+        <Page />
+    </Suspense>
+);
 
 const AppRoutes = () => {
 
@@ -40,7 +58,7 @@ const AppRoutes = () => {
 
                 <Route
                     path="/login"
-                    element={<Login />}
+                    element={renderPage(Login)}
                 />
 
                 <Route
@@ -53,7 +71,7 @@ const AppRoutes = () => {
                     element={
                         <ProtectedRoute>
 
-                            <Dashboard />
+                            {renderPage(Dashboard)}
 
                         </ProtectedRoute>
                     }
@@ -64,7 +82,7 @@ const AppRoutes = () => {
                     element={
                         <ProtectedRoute>
 
-                            <Profile />
+                            {renderPage(Profile)}
 
                         </ProtectedRoute>
                     }
@@ -75,7 +93,7 @@ const AppRoutes = () => {
                     element={
                         <ProtectedRoute requireAdmin>
 
-                            <AdminTours />
+                            {renderPage(AdminTours)}
 
                         </ProtectedRoute>
                     }
@@ -86,7 +104,7 @@ const AppRoutes = () => {
                     element={
                         <ProtectedRoute requireAdmin>
 
-                            <AdminHotels />
+                            {renderPage(AdminHotels)}
 
                         </ProtectedRoute>
                     }
@@ -97,7 +115,7 @@ const AppRoutes = () => {
                     element={
                         <ProtectedRoute requireAdmin>
 
-                            <AdminTransports />
+                            {renderPage(AdminTransports)}
 
                         </ProtectedRoute>
                     }
@@ -108,7 +126,7 @@ const AppRoutes = () => {
                     element={
                         <ProtectedRoute>
 
-                            <Reservations />
+                            {renderPage(Reservations)}
 
                         </ProtectedRoute>
                     }
@@ -116,42 +134,42 @@ const AppRoutes = () => {
 
                 <Route
                     path="/tours"
-                    element={<Tours />}
+                    element={renderPage(Tours)}
                 />
 
                 <Route
                     path="/tours/:id"
-                    element={<TourDetail />}
+                    element={renderPage(TourDetail)}
                 />
                 <Route
                     path="/travelers/:reservationId"
-                    element={<Travelers />}
+                    element={renderPage(Travelers)}
                 />
 
                 <Route
                     path="/payment/:reservationId"
-                    element={<PaymentWrapper />}
+                    element={renderPage(PaymentWrapper)}
                 />
 
                 <Route
                     path="/transport-selection"
-                    element={<TransportSelection />}
+                    element={renderPage(TransportSelection)}
                 />
 
                 <Route path="/hotel-selection"
-                    element={<HotelSelection />}
+                    element={renderPage(HotelSelection)}
                 />
 
                 <Route path="/reservation-summary"
-                    element={<ReservationSummary />}
+                    element={renderPage(ReservationSummary)}
                 />
                 <Route
                     path="/confirm"
-                    element={<Confirm />}
+                    element={renderPage(Confirm)}
                 />
                 <Route
                     path="/register"
-                    element={<Register />}
+                    element={renderPage(Register)}
                 />
 
             </Routes>

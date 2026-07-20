@@ -14,7 +14,7 @@ const featuredPackages = [
         rating: "4.9",
         reviews: "128",
         badge: "Cancelacion gratis",
-        image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=1200&auto=format&fit=crop"
+        image: "/images/maldives.webp"
     },
     {
         name: "Aventura Alpina Premium",
@@ -23,7 +23,7 @@ const featuredPackages = [
         rating: "5.0",
         reviews: "95",
         badge: "Mas vendido",
-        image: "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=1200&auto=format&fit=crop"
+        image: "/images/alps.webp"
     },
     {
         name: "Esencia de Japon",
@@ -32,7 +32,7 @@ const featuredPackages = [
         rating: "4.8",
         reviews: "210",
         badge: "Cultural",
-        image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop"
+        image: "/images/japan.webp"
     }
 ];
 
@@ -78,20 +78,20 @@ const galleryDestinations = [
     {
         name: "Paris, Francia",
         size: "large",
-        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200&auto=format&fit=crop"
+        image: "/images/paris.webp"
     },
     {
         name: "Santorini",
-        image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=1200&auto=format&fit=crop"
+        image: "/images/santorini.webp"
     },
     {
         name: "Cusco",
-        image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1200&auto=format&fit=crop"
+        image: "/images/cusco.webp"
     },
     {
         name: "Barrera de Coral",
         size: "wide",
-        image: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=1200&auto=format&fit=crop"
+        image: "/images/coral.webp"
     }
 ];
 
@@ -138,6 +138,29 @@ const Home = () => {
 
             <main className="home-page">
                 <section className="home-hero">
+                    <picture className="home-hero-media" aria-hidden="true">
+                        <source
+                            srcSet="/images/hero-travel-640.webp"
+                            media="(max-width: 640px)"
+                            type="image/webp"
+                        />
+                        <source
+                            srcSet="/images/hero-travel-960.webp"
+                            media="(max-width: 1024px)"
+                            type="image/webp"
+                        />
+                        <img
+                            src="/images/hero-travel.webp"
+                            srcSet="/images/hero-travel-640.webp 640w, /images/hero-travel-960.webp 960w, /images/hero-travel.webp 1440w"
+                            sizes="100vw"
+                            alt=""
+                            width="1440"
+                            height="960"
+                            fetchPriority="high"
+                            decoding="async"
+                        />
+                    </picture>
+
                     <div className="home-shell">
                         <p className="home-kicker">
                             TravelGo Tour Agency
@@ -316,7 +339,14 @@ const Home = () => {
                                 key={item.name}
                             >
                                 <div className="package-image">
-                                    <img src={item.image} alt={item.name} />
+                                    <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        width="720"
+                                        height="540"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
                                     <span>
                                         {item.badge}
                                     </span>
@@ -380,6 +410,10 @@ const Home = () => {
                                 <img
                                     src={destinationItem.image}
                                     alt={destinationItem.name}
+                                    width={destinationItem.size === "large" ? "960" : "720"}
+                                    height="720"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <span>
                                     {destinationItem.label || "Destino premium"}

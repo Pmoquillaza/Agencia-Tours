@@ -131,19 +131,25 @@
 }
 
 .traveler-progress {
+    display: block;
+    width: 100%;
     height: 8px;
     overflow: hidden;
+    border: 0;
     border-radius: 999px;
     background: #e6eaf1;
     margin-bottom: 22px;
 }
 
-.traveler-progress span {
-    display: block;
+.traveler-progress::-webkit-progress-bar {
+    background: #e6eaf1;
+}
+
+.traveler-progress::-webkit-progress-value,
+.traveler-progress::-moz-progress-bar {
     height: 100%;
     border-radius: inherit;
     background: var(--brand);
-    transition: width 180ms ease;
 }
 
 .travelers-layout {

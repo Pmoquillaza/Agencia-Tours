@@ -1,0 +1,21 @@
+# TravelGo
+
+> TravelGo es una agencia de tours para explorar paquetes turisticos, comparar transporte y hoteles, registrar viajeros y completar reservas seguras.
+
+## Paginas principales
+
+- [Inicio](https://travelgo.bond/)
+- [Paquetes turisticos](https://travelgo.bond/tours)
+- [Ingreso de usuarios](https://travelgo.bond/login)
+- [Registro de viajeros](https://travelgo.bond/register)
+
+## Flujos de reserva
+
+- [Seleccion de tours](https://travelgo.bond/tours)
+- [Seleccion de transporte](https://travelgo.bond/transport-selection)
+- [Seleccion de hotel](https://travelgo.bond/hotel-selection)
+- [Resumen de reserva](https://travelgo.bond/reservation-summary)
+
+## Informacion del sitio
+
+TravelGo permite consultar experiencias de viaje, crear reservas con viajeros asociados, seleccionar servicios complementarios y gestionar confirmaciones desde un panel privado.
