@@ -2,10 +2,39 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
+const inlineEntryCss = () => ({
+    name: "inline-entry-css",
+    apply: "build",
+    enforce: "post",
+    generateBundle(_options, bundle) {
+        const htmlAsset = bundle["index.html"];
+
+        if (!htmlAsset || typeof htmlAsset.source !== "string") {
+            return;
+        }
+
+        htmlAsset.source = htmlAsset.source.replace(
+            /<link rel="stylesheet" crossorigin href="\/([^"]+\.css)">/,
+            (tag, fileName) => {
+                const cssAsset = bundle[fileName];
+
+                if (!cssAsset || cssAsset.type !== "asset") {
+                    return tag;
+                }
+
+                delete bundle[fileName];
+
+                return `<style>${cssAsset.source}</style>`;
+            }
+        );
+    }
+});
+
 export default defineConfig({
     plugins: [
         react(),
-        tailwindcss()
+        tailwindcss(),
+        inlineEntryCss()
     ],
     build: {
         cssCodeSplit: true,
