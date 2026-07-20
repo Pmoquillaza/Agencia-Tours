@@ -140,7 +140,7 @@ const Home = () => {
                 <section className="home-hero">
                     <picture className="home-hero-media" aria-hidden="true">
                         <source
-                            srcSet="/images/hero-travel-640.webp"
+                            srcSet="/images/hero-travel-mobile.webp"
                             media="(max-width: 640px)"
                             type="image/webp"
                         />
@@ -151,7 +151,7 @@ const Home = () => {
                         />
                         <img
                             src="/images/hero-travel.webp"
-                            srcSet="/images/hero-travel-640.webp 640w, /images/hero-travel-960.webp 960w, /images/hero-travel.webp 1440w"
+                            srcSet="/images/hero-travel-mobile.webp 520w, /images/hero-travel-640.webp 640w, /images/hero-travel-960.webp 960w, /images/hero-travel.webp 1280w"
                             sizes="100vw"
                             alt=""
                             width="1440"
