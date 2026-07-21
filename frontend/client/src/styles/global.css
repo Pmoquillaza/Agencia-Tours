@@ -75,8 +75,16 @@ body {
     color: transparent;
 }
 
-.material-symbols-ready .material-symbols-outlined {
+.material-symbols-outlined[data-icon-upgraded="true"] {
     color: inherit;
+    font-family: inherit;
+}
+
+.material-symbols-outlined .material-symbol-svg {
+    width: 1em;
+    height: 1em;
+    display: block;
+    flex: 0 0 auto;
 }
 
 a {
