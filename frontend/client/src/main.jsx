@@ -6,37 +6,55 @@ import { AuthProvider } from './context/AuthContext.jsx'
 
 import "./styles/global.css";
 
+const enableMaterialSymbols = () => {
+    document.documentElement.classList.add(
+        "material-symbols-ready"
+    );
+};
+
+const disableMaterialSymbols = () => {
+    document.documentElement.classList.remove(
+        "material-symbols-ready"
+    );
+};
+
+const enableMaterialSymbolsWhenReady = () => {
+    if (document.fonts?.load) {
+        document.fonts
+            .load('24px "Material Symbols Outlined"')
+            .then((fonts) => {
+                if (fonts.length > 0) {
+                    enableMaterialSymbols();
+                } else {
+                    disableMaterialSymbols();
+                }
+            })
+            .catch(disableMaterialSymbols);
+
+        return;
+    }
+
+    enableMaterialSymbols();
+};
+
 const loadMaterialSymbols = () => {
     const existingLink = document.querySelector(
         "link[data-material-symbols]"
     );
 
     if (existingLink) {
+        enableMaterialSymbolsWhenReady();
+
         return;
     }
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap";
+    link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block";
     link.dataset.materialSymbols = "true";
 
-    const enableIcons = () => {
-        document.documentElement.classList.add(
-            "material-symbols-ready"
-        );
-    };
-
-    link.addEventListener("load", () => {
-        if (document.fonts?.load) {
-            document.fonts
-                .load('24px "Material Symbols Outlined"')
-                .finally(enableIcons);
-
-            return;
-        }
-
-        enableIcons();
-    });
+    link.addEventListener("load", enableMaterialSymbolsWhenReady);
+    link.addEventListener("error", disableMaterialSymbols);
 
     document.head.appendChild(link);
 };
@@ -64,9 +82,13 @@ const watchForMaterialSymbols = () => {
 };
 
 if (typeof window !== "undefined") {
-    window.addEventListener("load", watchForMaterialSymbols, {
-        once: true
-    });
+    if (document.readyState === "complete") {
+        watchForMaterialSymbols();
+    } else {
+        window.addEventListener("load", watchForMaterialSymbols, {
+            once: true
+        });
+    }
 }
 
 const rootElement = document.getElementById("root");

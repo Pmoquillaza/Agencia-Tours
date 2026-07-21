@@ -179,8 +179,6 @@ const Payment = () => {
 
                 setPaymentError(friendlyMessage);
 
-                alert(friendlyMessage);
-
                 return;
 
             }
@@ -189,11 +187,6 @@ const Payment = () => {
 
                 const confirmResponse =
                     await confirmPayment(reservationId);
-
-                alert(
-                    confirmResponse?.message ||
-                    "Pago realizado correctamente"
-                );
 
                 navigate(
                     `/confirm?reservation=${reservationId}&notification=${confirmResponse?.notification || "sent"}`
@@ -207,10 +200,6 @@ const Payment = () => {
                     `Stripe dejo el pago en estado ${result.paymentIntent.status}. La reserva sigue pendiente para reintentar.`;
 
                 setPaymentError(
-                    friendlyMessage
-                );
-
-                alert(
                     friendlyMessage
                 );
 
@@ -230,20 +219,14 @@ const Payment = () => {
 
                 setPaymentError(friendlyMessage);
 
-                alert(friendlyMessage);
-
                 return;
             }
 
-            setPaymentError(
+            const friendlyMessage =
                 backendMessage ||
                 "No se pudo procesar el pago. Intenta nuevamente."
-            );
 
-            alert(
-                backendMessage ||
-                "No se pudo procesar el pago. Intenta nuevamente."
-            );
+            setPaymentError(friendlyMessage);
 
         } finally {
 
